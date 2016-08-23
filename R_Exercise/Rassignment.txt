@@ -1,0 +1,143 @@
+2:
+> for(i in 1:ncol(f))
++ {
++ a[i]=f[i,i]
++ }
+> a
+ [1] 1.794781e+03 3.365778e+02 2.233495e-01 3.342065e-02 1.221264e-02 3.505358e+03 2.601012e+03 4.337822e+02 6.813990e+02 5.584840e+03
+> max(a)
+[1] 5584.84
+
+1:
+f<-cov(m)
+
+0:
+
+library('data.table')
+data<-fread('http://www.dataminingbook.info/pmwiki.php/Main/NumericDataAnalysis?action=download&upname=magic04.txt')
+data[,V11:=NULL]
+
+3:
+ for(i in 1:ncol(m))
++ a[i]=0
+> a
+ [1] 0 0 0 0 0 0 0 0 0 0
+> for(i in 1:ncol(m))
++ {
++ for(j in 1:ncol(m))
++ {
++ a[j]=a[j]+l[j,i]
++ }
++ }
+> a
+ [1] 211.5172 298.5137 642.6153 177.5175 515.6919 421.6490 350.1754 328.8490 638.6881 237.1455
+> for(j in 1:ncol(m))
++ {
++ a[j]=a[j]/nrow(m)
++ }
+> a
+ [1] 0.011120778 0.015694727 0.033786293 0.009333202 0.027113139 0.022168717 0.018410904 0.017289642 0.033579816 0.012468218
+
+4:
+ a<-matrix(,nrow=10,ncol=10)
+ for(i in 1:nrow(f))
++ {
++ for(j in 1:ncol(f))
++ {
++ if(i!=j)
++ {
++ a[i,j]<-f[i,j]/sqrt(f[i,j-1]*f[i+1,j])
++ }
++ }
++ }
+
+
+5:
+> h<-data.matrix(data);
+> y <- dnorm(h[,1],mean(h[,1]),sqrt(var(h[,1])));
+> x <- h[,1];
+> plot(x,y);
+
+
+6:
+ h=data.matrix(m);
+> b<-matrix(, nrow = 1, ncol = 10)
+> for(i in 1:10)
++ {
++ b[1,i]<-var(h[,i])
++ }
+ v<-order(b[1,],decreasing=TRUE)
+
+7:
+> a<-c()
+> b<-c()
+> h=data.matrix(m);
+> getmode <- function(v) {
++    uniqv <- unique(v)
++    uniqv[which.max(tabulate(match(v, uniqv)))]
++ }
+> for(i in 1:10)
++ {
++ a[i]<-median(h[,i])
++ b[i]<-getmode(h[,i])
++ }
+
+8:
+
+9:
+
+10:
+a<-c()
+> for(i in 1:ncol(h))
++ {
++ c1<-h[,i]
++ for(j in i:ncol(h))
++ {
++ c2<-h[,j]
++ if(sum(c1*c2)==0)
++ {
++ a<-append(a,i)
++ a<-append(a,j)
++ break
++ }
++ }
++ }
+> a
+NULL
+
+
+11:
+library('data.table')
+data<-fread('http://www.dataminingbook.info/pmwiki.php/Main/NumericDataAnalysis?action=download&upname=magic04.txt')
+data[,V11:=NULL]
+h<-data.matrix(data);
+max<-0
+a<--1
+b<--1
+
+for(i in 1:ncol(h))
+{
+c1<-h[,i]
+for(j in 1:ncol(h))
+{
+if(i!=j)
+{
+c2<-h[,j]
+c3<-c1-c2
+n<-sqrt(sum(c3 * c3))
+if(max<n)
+{
+max=n
+a<-i
+b<-j
+}
+}
+}
+}
+print(max)
+print(a)
+print(b)
+
+
+
+
