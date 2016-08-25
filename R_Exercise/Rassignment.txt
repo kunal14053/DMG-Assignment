@@ -1,3 +1,13 @@
+0:
+library('data.table')
+data<-fread('http://www.dataminingbook.info/pmwiki.php/Main/NumericDataAnalysis?action=download&upname=magic04.txt')
+data[,V11:=NULL]
+
+
+1:
+f<-cov(m)
+
+
 2:
 > for(i in 1:ncol(f))
 + {
@@ -8,14 +18,6 @@
 > max(a)
 [1] 5584.84
 
-1:
-f<-cov(m)
-
-0:
-
-library('data.table')
-data<-fread('http://www.dataminingbook.info/pmwiki.php/Main/NumericDataAnalysis?action=download&upname=magic04.txt')
-data[,V11:=NULL]
 
 3:
  for(i in 1:ncol(m))
@@ -37,6 +39,7 @@ data[,V11:=NULL]
 + }
 > a
  [1] 0.011120778 0.015694727 0.033786293 0.009333202 0.027113139 0.022168717 0.018410904 0.017289642 0.033579816 0.012468218
+
 
 4:
  a<-matrix(,nrow=10,ncol=10)
@@ -68,6 +71,7 @@ data[,V11:=NULL]
 + }
  v<-order(b[1,],decreasing=TRUE)
 
+
 7:
 > a<-c()
 > b<-c()
@@ -82,9 +86,24 @@ data[,V11:=NULL]
 + b[i]<-getmode(h[,i])
 + }
 
+
 8:
+library('data.table')
+data<-fread('http://www.dataminingbook.info/pmwiki.php/Main/NumericDataAnalysis?action=download&upname=magic04.txt')
+h<-data.matrix(data);
+
+for(i in 1:5){
+	for(j in i+1:5){
+		if(i<=5 && j<=5){
+		dev.new();
+		plot(h[,i],h[,j],xlab=paste(i, "Attribute", sep="-"),ylab=paste(j, "Attribute", sep="-"));
+		}
+	}
+}
+
 
 9:
+
 
 10:
 a<-c()
