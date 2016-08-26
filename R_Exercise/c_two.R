@@ -8,5 +8,5 @@ tbl = table(MyData[,i],MyData[,15]);
 a<-append(a,(chisq.test(tbl)[1]$statistic));
 }
 v<-order(a,decreasing=TRUE);
-
+print(a);
 print(v);

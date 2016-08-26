@@ -8,13 +8,13 @@ print(f);
 x=-1;
 y=-1;
 
-for(i in 1:nrow(h))
+for(i in 1:nrow(f))
 {
-	for(j in 1:ncol(h))
+	for(j in 1:ncol(f))
 	{
 		if(i!=j)
 		{
-			if(h[i,j]==0)
+			if(f[i,j]==0)
 			{
 				x=i;
 				y=j;
