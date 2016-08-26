@@ -6,7 +6,7 @@ for(i in 1:5){
 	for(j in i+1:5){
 		if(i<=5 && j<=5){
 		dev.new();
-		plot(h[,i],h[,j],xlab=paste(i, "Attribute", sep="-"),ylab=paste(j, "Attribute", sep="-"));
+		plot(h[,i],h[,j],xlab=paste(i, "Attribute", sep="-"),ylab=paste(j, "Attribute", sep="-"),col=c('black','green'));
 		}
 	}
 }
