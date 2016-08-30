@@ -27,3 +27,5 @@ b<-j
 print(max)
 print(a)
 print(b)
+
+#L2 Norm

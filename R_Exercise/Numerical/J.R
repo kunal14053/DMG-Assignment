@@ -6,7 +6,7 @@ data<-fread('http://www.dataminingbook.info/pmwiki.php/Main/NumericDataAnalysis?
 data[,V11:=NULL]
 
 h<-data.matrix(data);
-
+flag=-1;
 a<-c()
 
 for(i in 1:ncol(h))
@@ -19,10 +19,16 @@ for(i in 1:ncol(h))
  		{
  		a<-append(a,i)
  		a<-append(a,j)
+		flag=0;
  		break
 		}
 	}
 }
-print(a)
 
+if(flag==-1){
+print('No Pair is Orthogonal');
+}else{
+print('The oryhogonal Pair is:-');
+print(a)
+}
 

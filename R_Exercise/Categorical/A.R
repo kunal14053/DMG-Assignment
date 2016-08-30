@@ -25,10 +25,12 @@ s2=j;
 }
 }
 }
+print('Maximum');
 print(paste('Attribute1: ',f1,''));
 print(paste('Attribute2: ',f2,''));
 print(max);
 
+print('Minimum');
 print(paste('Attribute1: ',s1,''));
 print(paste('Attribute2: ',s2,''));
 print(min);
