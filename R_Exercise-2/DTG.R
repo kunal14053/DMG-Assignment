@@ -116,8 +116,8 @@ Desicion_tree<-function(data)
 		}
 		print("Data");
 		print(new_data);
-		if(K>0){	
-		Desicion_tree(new_data);}		
+			
+		Desicion_tree(new_data);		
 	}
 	}else
 	{
