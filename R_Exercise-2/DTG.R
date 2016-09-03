@@ -129,7 +129,8 @@ Desicion_tree<-function(data)
 Desicion_tree(mydata);
 
 
-
+#Problem
+#-> need to see recursion(stopping condition)
 
 
 
