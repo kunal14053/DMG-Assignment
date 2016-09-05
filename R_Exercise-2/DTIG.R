@@ -21,21 +21,21 @@ return (r);
 
 data_entropy<- function(mydata)
 {
-y=0;
-n=0;
-total=sum(mydata[,6]);
+y<-0;
+n<-0;
+total<-sum(mydata[,6]);
 for(i in 1:nrow(mydata))
 {
 if(mydata[i,5]=="Yes")
 {
-y=y+mydata[i,6];
+y<-y+mydata[i,6];
 }else{
-n=n+mydata[i,6];
+n<-n+mydata[i,6];
 }
 }
-y=y/total;
-n=n/total;
-entropy= -(y*log(y)+n*log(n));
+y<-y/total;
+n<-n/total;
+entropy<- -(y*log(y)+n*log(n));
 return(entropy);
 }
  
@@ -56,13 +56,13 @@ return (data_entropy-attribute_entropy);
 
 attribute_entropt<-function(P,X,R,F)
 {
-	yes_prob1=0;
-	no_prob1=0;
-	yes_prob2=0;
-	no_prob2=0;
-	total=sum(F);
-	sum1=0;
-	sum2=0;
+	yes_prob1<-0;
+	no_prob1<-0;
+	yes_prob2<-0;
+	no_prob2<-0;
+	total<-sum(F);
+	sum1<-0;
+	sum2<-0;
 	if(f(P))
 	{
 		for(i in 1:length(X))
@@ -71,19 +71,19 @@ attribute_entropt<-function(P,X,R,F)
 			{
 				if(R[i]=='Yes')
 				{
-					yes_prob1=yes_prob1+F[i];	
+					yes_prob1<-yes_prob1+F[i];	
 				}else
 				{
-					no_prob1=no_prob1+F[i];
+					no_prob1<-no_prob1+F[i];
 				}
-				sum1=sum1+F[i];			
+				sum1<-sum1+F[i];			
 			}else{
 				if(R[i]=='Yes')
 				{
-					yes_prob2=yes_prob1+F[i];	
+					yes_prob2<-yes_prob1+F[i];	
 				}else
 				{
-					no_prob2=no_prob1+F[i];
+					no_prob2<-no_prob1+F[i];
 				}
 				
 			}
@@ -96,34 +96,34 @@ attribute_entropt<-function(P,X,R,F)
 			{
 				if(R[i]=='Yes')
 				{
-					yes_prob1=yes_prob1+F[i];	
+					yes_prob1<-yes_prob1+F[i];	
 				}else
 				{
-					no_prob1=no_prob1+F[i];
+					no_prob1<-no_prob1+F[i];
 				}
-				sum1=sum1+F[i];			
+				sum1<-sum1+F[i];			
 			}else{
 				if(R[i]=='Yes')
 				{
-					yes_prob2=yes_prob1+F[i];	
+					yes_prob2<-yes_prob1+F[i];	
 				}else
 				{
-					no_prob2=no_prob1+F[i];
+					no_prob2<-no_prob1+F[i];
 				}
-				sum2=sum2+F[i];
+				sum2<-sum2+F[i];
 			}
 		}				
 		
 	}
-	yes_prob1=yes_prob1/total;
-	no_prob1=no_prob1/total;
-	yes_prob2=yes_prob2/total;
-	no_prob2=no_prob2/total;
-	entropy1= -(yes_prob1*log(yes_prob1)+no_prob1*log(no_prob1));
-	entropy2= -(yes_prob2*log(yes_prob2)+no_prob2*log(no_prob2));
-	sum1=sum1/total;
-	sum2=sum2/total;
-	final_out=sum1*entropy1+sum2*entropy2;
+	yes_prob1<-yes_prob1/total;
+	no_prob1<-no_prob1/total;
+	yes_prob2<-yes_prob2/total;
+	no_prob2<-no_prob2/total;
+	entropy1<- -(yes_prob1*log(yes_prob1)+no_prob1*log(no_prob1));
+	entropy2<- -(yes_prob2*log(yes_prob2)+no_prob2*log(no_prob2));
+	sum1<-sum1/total;
+	sum2<-sum2/total;
+	final_out<-sum1*entropy1+sum2*entropy2;
 	return(final_out);
 }
 
@@ -131,7 +131,7 @@ attribute_entropt<-function(P,X,R,F)
 index<-table_attribute(mydata);
 
 
-Desicion_Tree<-function(data)
+Desicion_Tree<-function(data,index)
 {
 
 a <- table(data[,5]);
@@ -142,41 +142,41 @@ if(a[names(a)=='Yes']==nrow(data) || a[names(a)=='No']==nrow(data))
 }
 
 
-scale=-1;
-max=-1;
-x=data_entropy(data);
+scale<--1;
+max<--1;
+x<-data_entropy(data);
 print(x);
 
 for(i in 1:length(index))
 {
 	
-	input=index[i];
-	process=strsplit(input, "-")[[1]];
-	rf=strtoi(process[2]);	
-	value=attribute_entropt(process[1],data[,rf],data[,5],data[,6]);
+	input<-index[i];
+	process<-strsplit(input, "-")[[1]];
+	rf<-strtoi(process[2]);	
+	value<-attribute_entropt(process[1],data[,rf],data[,5],data[,6]);
 	print(value);
-	out_value=gain(x,value);
+	out_value<-gain(x,value);
 	print(out_value);
 	
 	
 	if(max < out_value)
 	{
-		max=out_value;
-		scale=i;	
+		max<-out_value;
+		scale<-i;	
 	}
 	
 }
 
-max_gain_attri=index[scale];
+max_gain_attri<-index[scale];
 print("Max Gain Attribute");
 print(max_gain_attri);
 index<-index[-which(index==index[scale])];
 
 D_yes<-c();	
 D_no<-c();
-process=strsplit(max_gain_attri, "-")[[1]];	
+process<-strsplit(max_gain_attri, "-")[[1]];	
 
-rf=strtoi(process[2])
+rf<-strtoi(process[2])
 
 for(i in 1:nrow(data))
 {
@@ -204,12 +204,12 @@ print(D_yes);
 print('Data No');
 print(D_no);
 
-Desicion_Tree(D_yes);
-Desicion_Tree(D_no);
+Desicion_Tree(D_yes,index);
+Desicion_Tree(D_no,index);
 }
 
 
-Desicion_Tree(mydata);
+Desicion_Tree(mydata,index);
 
 
 

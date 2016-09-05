@@ -38,18 +38,23 @@ find<-function(X)
 Kmeans<-function(p1,p2,p3,p4,k1,k2,k3,k4,mydata,C1,C2,C3,C4)
 {
 
-		
 	for(i in 1:nrow(mydata))
 	{
 
+		print(mydata[i,]);		
+		D1<-dist(rbind(mydata[i,],k1));
+		D2<-dist(rbind(mydata[i,],k2));
+		D3<-dist(rbind(mydata[i,],k3));
+		D4<-dist(rbind(mydata[i,],k4));
 		
-		D1=dist(rbind(mydata[i,],k1));
-		D2=dist(rbind(mydata[i,],k2));
-		D3=dist(rbind(mydata[i,],k3));
-		D4=dist(rbind(mydata[i,],k4));
-		Min1=min(D1,D2,D3,D4);
-		
+		print(D1);			
+		print(D2);
+		print(D3);
+		print(D4);
 
+		Min1<-min(D1,D2,D3,D4);
+		
+		
 		if(Min1==D1){
 			C1<-rbind(C1,mydata[i,]);
 		}else if(Min1==D2){
@@ -61,7 +66,7 @@ Kmeans<-function(p1,p2,p3,p4,k1,k2,k3,k4,mydata,C1,C2,C3,C4)
 		}
 		
 	}
-
+	
 	d1<-(find(p1)-find(k1))^2;
 	d2<-(find(p2)-find(k2))^2;
 	d3<-(find(p3)-find(k3))^2;
@@ -75,18 +80,14 @@ Kmeans<-function(p1,p2,p3,p4,k1,k2,k3,k4,mydata,C1,C2,C3,C4)
 	{
 		print(C1);
 		print(k1);
-		print('\n');
 		print(C2);
 		print(k3);
-		print('\n');
 		print(C3);
 		print(k3);
-		print('\n');
 		print(C4);
 		print(k4);
-		print('\n');
 		return(NULL);		
-	}			
+	}else{			
 		p1<-k1;
 		p2<-k2;
 		p3<-k3;
@@ -100,6 +101,7 @@ Kmeans<-function(p1,p2,p3,p4,k1,k2,k3,k4,mydata,C1,C2,C3,C4)
 		C3<-c();
 		C4<-c();
 		Kmeans(p1,p2,p3,p4,k1,k2,k3,k4,mydata,C1,C2,C3,C4);
+	}
 }
 	
 
