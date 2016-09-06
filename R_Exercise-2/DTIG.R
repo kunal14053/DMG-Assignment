@@ -26,7 +26,7 @@ n<-0;
 total<-sum(mydata[,6]);
 for(i in 1:nrow(mydata))
 {
-if(mydata[i,5]=="Yes")
+if(isTRUE(mydata[i,5]=="Yes"))
 {
 y<-y+mydata[i,6];
 }else{
@@ -63,13 +63,13 @@ attribute_entropt<-function(P,X,R,F)
 	total<-sum(F);
 	sum1<-0;
 	sum2<-0;
-	if(f(P))
+	if(isTRUE(f(P)))
 	{
 		for(i in 1:length(X))
 		{
-			if(X[i]<=P)
+			if(isTRUE(X[i]<=P))
 			{
-				if(R[i]=='Yes')
+				if(isTRUE(R[i]=='Yes'))
 				{
 					yes_prob1<-yes_prob1+F[i];	
 				}else
@@ -78,7 +78,7 @@ attribute_entropt<-function(P,X,R,F)
 				}
 				sum1<-sum1+F[i];			
 			}else{
-				if(R[i]=='Yes')
+				if(isTRUE(R[i]=='Yes'))
 				{
 					yes_prob2<-yes_prob1+F[i];	
 				}else
@@ -92,9 +92,9 @@ attribute_entropt<-function(P,X,R,F)
 	{
 		for(i in 1:length(X))
 		{
-			if(X[i]==P)
+			if(isTRUE(X[i]==P))
 			{
-				if(R[i]=='Yes')
+				if(isTRUE(R[i]=='Yes'))
 				{
 					yes_prob1<-yes_prob1+F[i];	
 				}else
@@ -103,7 +103,7 @@ attribute_entropt<-function(P,X,R,F)
 				}
 				sum1<-sum1+F[i];			
 			}else{
-				if(R[i]=='Yes')
+				if(isTRUE(R[i]=='Yes'))
 				{
 					yes_prob2<-yes_prob1+F[i];	
 				}else
@@ -135,7 +135,9 @@ Desicion_Tree<-function(data,index)
 {
 
 a <- table(data[,5]);
-if(a[names(a)=='Yes']==nrow(data) || a[names(a)=='No']==nrow(data))
+print('Table');
+print(a);
+if(isTRUE(a[names(a)=='Yes']==nrow(data) || a[names(a)=='No']==nrow(data)))
 {
 	print('Pure Condition');
 	return(NULL);
@@ -159,7 +161,7 @@ for(i in 1:length(index))
 	print(out_value);
 	
 	
-	if(max < out_value)
+	if(isTRUE(max < out_value))
 	{
 		max<-out_value;
 		scale<-i;	
@@ -180,9 +182,9 @@ rf<-strtoi(process[2])
 
 for(i in 1:nrow(data))
 {
-	if(f(process[1]))
+	if(isTRUE(f(process[1])))
 	{
-		if(data[i,rf]<=process[1])
+		if(isTRUE(data[i,rf]<=process[1]))
 		{
 			D_yes<-rbind(D_yes,data[i,]);			
 		}else{
@@ -190,7 +192,7 @@ for(i in 1:nrow(data))
 		}
 	}else
 	{
-		if(data[i,rf]==process[1])
+		if(isTRUE(data[i,rf]==process[1]))
 		{
 			D_yes<-rbind(D_yes,data[i,]);			
 		}else{
