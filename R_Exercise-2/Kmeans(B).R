@@ -1,7 +1,11 @@
-library(ggplot2)
 mydata<-read.csv('IRIS.csv',header=FALSE)
-Call<-function(i){
-irisCluster <- kmeans(mydata[, 3:4], i);
-irisCluster$cluster <- as.factor(irisCluster$cluster);
-ggplot(mydata, aes(V3,V4, color =irisCluster$cluster)) + geom_point()
-}	
+W=c();
+for(i in 2:12){
+x=kmeans(mydata[,1:8], i);
+W=append(W,(x$tot.withinss));
+}
+
+print(W);
+print(order(W)+1);
+
+plot(W,xlab='Cluster',ylab='SSE');

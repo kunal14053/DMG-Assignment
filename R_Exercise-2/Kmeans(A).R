@@ -74,7 +74,10 @@ Kmeans<-function(mydata,p1,p2,p3,p4,k1,k2,k3,k4,C1,C2,C3,C4)
 		
 	}
 
-	
+	print(C1);
+	print(C2);
+	print(C3);
+	print(C4);
 	p1=k1;
 	p2=k2;
 	p3=k3;
